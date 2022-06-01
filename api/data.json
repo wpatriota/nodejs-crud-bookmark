@@ -1,0 +1,16 @@
+{
+  "urls": [
+    {
+      "name": "google",
+      "url": "https://www.google.com"
+    },
+    {
+      "name": "github",
+      "url": "https://www.github.com"
+    },
+    {
+      "name": "discord",
+      "url": "https://www.discord.com"
+    }
+  ]
+}
