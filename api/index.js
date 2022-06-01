@@ -26,7 +26,7 @@ http.createServer((req, res) => {
     }
 
     if(del){
-        data.urls = data.urls.filter(item => String(item.url) !== String(url));
+        data.urls = data.urls.filter(item => String(item.name) !== String(name));
 
         return writeFile((message) => {res.end(message)});
     }

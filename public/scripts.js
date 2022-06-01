@@ -7,6 +7,24 @@ async function load(){
     res.urls.map(url => addElement(url));
 }
 
+async function inputData(name,url){
+    const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}`).then(data => data.json())
+    //return load();
+    //res.urls.map(url => addElement(url));
+    return res;
+}
+
+
+async function delData(name,url){
+    console.log(name,url);
+    const stringdel = `http://localhost:3000/?name=${name}&url=${url}&del=1`;
+    console.log(stringdel);
+    const res = await fetch(stringdel).then(data => data.json())
+    console.table(res);
+    //return res;
+    //res.urls.map(url => addElement(url));
+}
+
 load();
 
 function addElement({ name, url }) {
@@ -27,8 +45,15 @@ function addElement({ name, url }) {
 }
 
 function removeElement(el) {
-    if (confirm('Tem certeza que deseja deletar?'))
-        el.parentNode.remove()
+    if (confirm('Tem certeza que deseja deletar?')){        
+        delData(el.parentNode.firstChild.innerHTML, el.parentNode.firstChild.href);
+        el.parentNode.remove();
+
+        //delData(el.parentNode.firstChild.innerHTML, el.parentNode.firstChild.href) = () => {
+            //alert("Deletado com sucesso");
+            //el.parentNode.remove();
+        //}
+    }
 }
 
 form.addEventListener("submit", (event) => {
@@ -47,7 +72,10 @@ form.addEventListener("submit", (event) => {
     if (!/^http/.test(url)) 
         return alert("Digite a url da maneira correta")
 
-    addElement({ name, url })
+    inputData(name, url) = () => {
+        addElement({ name, url })
+    }    
+    
 
     input.value = ""
 })
